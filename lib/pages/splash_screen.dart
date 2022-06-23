@@ -18,6 +18,14 @@ class _SplashScreenState extends State<SplashScreen> {
 Future getShardPrefData() async{
  GlobalData.name=await SharedPref.stringGet(key: "name");
  debugPrint(GlobalData.name);
+ GlobalData.profession=await SharedPref.stringGet(key: "profession");
+ debugPrint(GlobalData.profession);
+ GlobalData.mobile=await SharedPref.stringGet(key: "mobile");
+ debugPrint(GlobalData.mobile);
+ GlobalData.email=await SharedPref.stringGet(key: "email");
+ debugPrint(GlobalData.email);
+ GlobalData.address=await SharedPref.stringGet(key: "address");
+ debugPrint(GlobalData.address);
 
 
 

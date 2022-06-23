@@ -17,6 +17,19 @@ class ViewResume extends StatefulWidget {
 }
 
 class _ViewResumeState extends State<ViewResume> {
+
+
+final List<String> _items=["Name","Profession","Mobile No","E-Mail","Address"];
+final List _itemsVal=[GlobalData.name.toString(),GlobalData.profession.toString(),GlobalData.mobile.toString(),GlobalData.email.toString(),GlobalData.address.toString()];
+int index =0;
+void _onReorder(int oldIndex, int newIndex) {
+    setState(() {
+      final newIdx = newIndex > oldIndex ? newIndex - 1 : newIndex;
+      final item = _items.removeAt(oldIndex);
+      _items.insert(newIdx, item);
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
 
@@ -41,21 +54,54 @@ crossAxisAlignment: CrossAxisAlignment.center,
                       
                         
                         ),
-        Row(
-          children: [
-            Container(
-              padding: EdgeInsets.all(10),
-              margin: EdgeInsets.only(left: 10, top: 10),
-              child: CustomeText(color: Colors.black,text: "Name: ",fontSize: 14,),
-            decoration: BoxDecoration(color: primaryColor,borderRadius: BorderRadius.circular(20)),),
+                        SizedBox(height: 10,),
+
+
+                        
         Container(
-              padding: EdgeInsets.all(10),
-              margin: EdgeInsets.only(left: 10, top: 10),
-              child:  CustomeText(color: Colors.black,text: GlobalData.name,fontSize: 14,),
-            decoration: BoxDecoration(borderRadius: BorderRadius.circular(20)),),
-        
-          ],
+          height: 300,
+          child: ReorderableListView(
+            onReorder: _onReorder,
+            children: [
+              for(int item=0 ;item<_items.length ; item++) ...[
+
+              
+              
+            
+              Row(
+                  key: Key(item.toString()),
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Expanded(
+               
+                    child: Container(
+                      padding: EdgeInsets.all(10),
+                      margin: EdgeInsets.only(left: 10, top: 10),
+                      child: CustomeText(color: Colors.black,text: _items[item].toString(),fontSize: 14,),
+                    decoration: BoxDecoration(color: primaryColor,borderRadius: BorderRadius.circular(20)),),
+                  ),
+
+              Expanded(
+              
+                child: Container(
+                      padding: EdgeInsets.all(10),
+                      margin: EdgeInsets.only(left: 10, top: 10),
+                      child:  CustomeText(color: Colors.black,text:_itemsVal[item] ,fontSize: 14,),
+                    decoration: BoxDecoration(borderRadius: BorderRadius.circular(20)),),
+              ),
+              
+                ],
+              ),
+
+              ]
+           
+       
+           
+            ],
+          ),
         ),
+
+   
        
 
   ],
