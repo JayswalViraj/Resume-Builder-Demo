@@ -1,4 +1,3 @@
-import 'package:flutter/rendering.dart';
 import 'package:flutter/widgets.dart';
 
 class SizeConfig {
@@ -37,9 +36,9 @@ class SizeConfig {
     heightMultiplier = _blockVertical;
     widthMultiplier = _blockHorizontal;
 
-    print("blockHorizontal"+_blockHorizontal.toString());
-    print("hightMultiplier"+heightMultiplier.toString());
-    print("widthMultiplier"+widthMultiplier.toString());
+  //  print("blockHorizontal"+_blockHorizontal.toString());
+  //  print("hightMultiplier"+heightMultiplier.toString());
+  //  print("widthMultiplier"+widthMultiplier.toString());
    
   }
 }

@@ -1,17 +1,11 @@
-import 'dart:async';
 import 'dart:io';
-
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/foundation/key.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:path_provider/path_provider.dart';
 import 'package:pushable_button/pushable_button.dart';
-import 'package:resume_builder/models/resume_model.dart';
 import 'package:resume_builder/pages/view_resume.dart';
 import 'package:resume_builder/utils/colors.dart';
-import 'package:resume_builder/utils/global_data.dart';
+import 'package:resume_builder/models/global_data.dart';
 import 'package:resume_builder/utils/local_storage.dart/shared_pref.dart';
 import 'package:resume_builder/utils/responsive_data.dart';
 
@@ -27,14 +21,11 @@ class EnterDetailPage extends StatefulWidget {
 class _EnterDetailPageState extends State<EnterDetailPage> {
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
-     pickedImage = null;
-                          GlobalData.pickedImage = null;
-                          setState(() {});
+    pickedImage = null;
+    GlobalData.pickedImage = null;
+    setState(() {});
   }
-
-  ResumeModel object = ResumeModel();
 
   final ImagePicker _picker = ImagePicker();
   XFile? pickedImage;
@@ -43,7 +34,7 @@ class _EnterDetailPageState extends State<EnterDetailPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Simple Resume Builder"),
+        title: const Text("Simple Resume Builder"),
         backgroundColor: primaryColor,
       ),
       body: SingleChildScrollView(
@@ -53,7 +44,7 @@ class _EnterDetailPageState extends State<EnterDetailPage> {
               right: SizeConfig.widthMultiplier * 5),
           child: Column(
             children: [
-              //File file = File(videofile.path);
+            
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
@@ -68,9 +59,8 @@ class _EnterDetailPageState extends State<EnterDetailPage> {
                                   height: SizeConfig.heightMultiplier * 22,
                                 )
                               : Image.network(
-                                
                                   GlobalData.pickedImage.toString()))
-                      : Container(
+                      : SizedBox(
                           height: SizeConfig.heightMultiplier * 25,
                           child: Image.asset("assets/images/default.png")),
                   Column(
@@ -96,15 +86,15 @@ class _EnterDetailPageState extends State<EnterDetailPage> {
                           margin: EdgeInsets.only(
                               left: SizeConfig.widthMultiplier * 2,
                               top: SizeConfig.heightMultiplier * 2),
+                          decoration: BoxDecoration(
+                              color: addBottonColor,
+                              borderRadius: BorderRadius.circular(20)),
                           child: Center(
                               child: CustomeText(
                             color: Colors.black,
                             text: "Add Image",
                             fontSize: SizeConfig.heightMultiplier * 2,
                           )),
-                          decoration: BoxDecoration(
-                              color: addBottonColor,
-                              borderRadius: BorderRadius.circular(20)),
                         ),
                       ),
                       InkWell(
@@ -119,6 +109,7 @@ class _EnterDetailPageState extends State<EnterDetailPage> {
                           margin: EdgeInsets.only(
                               left: SizeConfig.widthMultiplier * 2,
                               top: SizeConfig.heightMultiplier * 2),
+                          // ignore: sort_child_properties_last
                           child: Center(
                               child: CustomeText(
                             color: Colors.black,
@@ -176,6 +167,7 @@ class _EnterDetailPageState extends State<EnterDetailPage> {
                 children: [
                   Expanded(
                     child: PushableButton(
+                      // ignore: sort_child_properties_last
                       child: CustomeText(
                         text: "Save Data",
                         color: Colors.white,
@@ -188,7 +180,7 @@ class _EnterDetailPageState extends State<EnterDetailPage> {
                         color: Colors.grey.withOpacity(0.5),
                         spreadRadius: 5,
                         blurRadius: 7,
-                        offset: Offset(0, 2),
+                        offset: const Offset(0, 2),
                       ),
                       onPressed: () async {
                         await SharedPref.stringSave(
@@ -225,11 +217,6 @@ class _EnterDetailPageState extends State<EnterDetailPage> {
                   ),
                   Expanded(
                     child: PushableButton(
-                      child: CustomeText(
-                        text: "View Resume",
-                        color: Colors.white,
-                        fontWeight: FontWeight.w400,
-                      ),
                       height: SizeConfig.heightMultiplier * 7,
                       elevation: 8,
                       hslColor: HSLColor.fromColor(Colors.orangeAccent),
@@ -237,14 +224,19 @@ class _EnterDetailPageState extends State<EnterDetailPage> {
                         color: Colors.grey.withOpacity(0.5),
                         spreadRadius: 5,
                         blurRadius: 7,
-                        offset: Offset(0, 2),
+                        offset: const Offset(0, 2),
                       ),
                       onPressed: () {
                         Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) => ViewResume()));
+                                builder: (context) => const ViewResume()));
                       },
+                      child: CustomeText(
+                        text: "View Resume",
+                        color: Colors.white,
+                        fontWeight: FontWeight.w400,
+                      ),
                     ),
                   ),
                 ],
@@ -283,7 +275,7 @@ class _EnterDetailPageState extends State<EnterDetailPage> {
       }),
       decoration: InputDecoration(
         labelText: lableText,
-        border: OutlineInputBorder(),
+        border: const OutlineInputBorder(),
       ),
     );
   }

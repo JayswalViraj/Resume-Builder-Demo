@@ -1,17 +1,13 @@
 import 'dart:io';
-
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/foundation/key.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:resume_builder/models/resume_model.dart';
 import 'package:resume_builder/utils/colors.dart';
-import 'package:resume_builder/utils/global_data.dart';
+import 'package:resume_builder/models/global_data.dart';
 import 'package:resume_builder/utils/responsive_data.dart';
 import 'package:resume_builder/widgets/custome_text.dart';
 
 class ViewResume extends StatefulWidget {
-  ViewResume({Key? key}) : super(key: key);
+  const ViewResume({Key? key}) : super(key: key);
 
   @override
   State<ViewResume> createState() => _ViewResumeState();
@@ -49,12 +45,12 @@ class _ViewResumeState extends State<ViewResume> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Your Resume"),
+        title: const Text("Your Resume"),
         backgroundColor: primaryColor,
       ),
       body: Center(
           child: Card(
-        child: Container(
+        child: SizedBox(
             height: SizeConfig.heightMultiplier * 60,
             width: SizeConfig.widthMultiplier * 90,
             child: Column(
@@ -64,17 +60,17 @@ class _ViewResumeState extends State<ViewResume> {
                   height: SizeConfig.heightMultiplier,
                 ),
                 GlobalData.pickedImage != null
-                    ?  kIsWeb==true? Container(height: SizeConfig.heightMultiplier*18, child: Image.network(GlobalData.pickedImage.toString())):  CircleAvatar(
+                    ?  kIsWeb==true? SizedBox(height: SizeConfig.heightMultiplier*18, child: Image.network(GlobalData.pickedImage.toString())):  CircleAvatar(
                         radius: 60,
                         backgroundImage:
                             FileImage(File(GlobalData.pickedImage.toString())))
-                    : SizedBox(
+                    : const SizedBox(
                         height: 0,
                       ),
                 SizedBox(
                   height: SizeConfig.heightMultiplier,
                 ),
-                Container(
+                SizedBox(
                   height: SizeConfig.heightMultiplier * 40,
                   child: ReorderableListView(
                     onReorder: _onReorder,
@@ -98,16 +94,16 @@ class _ViewResumeState extends State<ViewResume> {
                                               SizeConfig.heightMultiplier * 1.5,
                                           top: SizeConfig.heightMultiplier *
                                               1.5),
+                                      decoration: BoxDecoration(
+                                          color: primaryColor,
+                                          borderRadius:
+                                              BorderRadius.circular(20)),
                                       child: CustomeText(
                                         color: Colors.black,
                                         text: _items[item].toString(),
                                         fontSize:
                                             SizeConfig.heightMultiplier * 2,
                                       ),
-                                      decoration: BoxDecoration(
-                                          color: primaryColor,
-                                          borderRadius:
-                                              BorderRadius.circular(20)),
                                     ),
                                   ),
                                   Expanded(
@@ -119,15 +115,15 @@ class _ViewResumeState extends State<ViewResume> {
                                               SizeConfig.heightMultiplier * 1.5,
                                           top: SizeConfig.heightMultiplier *
                                               1.5),
+                                      decoration: BoxDecoration(
+                                          borderRadius:
+                                              BorderRadius.circular(20)),
                                       child: CustomeText(
                                         color: Colors.black,
                                         text: _itemsVal[item],
                                         fontSize:
                                             SizeConfig.heightMultiplier * 2,
                                       ),
-                                      decoration: BoxDecoration(
-                                          borderRadius:
-                                              BorderRadius.circular(20)),
                                     ),
                                   ),
                                 ],

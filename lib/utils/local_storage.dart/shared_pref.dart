@@ -1,29 +1,15 @@
-
 import 'package:shared_preferences/shared_preferences.dart';
 
-class SharedPref{
+class SharedPref {
+  static stringSave({String? key, String? value}) async {
+    final prefs = await SharedPreferences.getInstance();
 
+    await prefs.setString(key.toString(), value.toString());
+  }
 
- static stringSave({String? key, String? value}) async{
+  static stringGet({String? key}) async {
+    final prefs = await SharedPreferences.getInstance();
 
-final prefs = await SharedPreferences.getInstance();
-
-await prefs.setString(key.toString(), value.toString());
-
-
- }
-
-
- static stringGet({String? key}) async{
-
-final prefs = await SharedPreferences.getInstance();
-
-return prefs.getString(key.toString());
-
-
-
-
- }
-
-
+    return prefs.getString(key.toString());
+  }
 }
