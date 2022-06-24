@@ -10,7 +10,7 @@ class CustomeText extends StatelessWidget {
   double? fontSize;
   FontWeight? fontWeight;
   
-   CustomeText({Key? key,this.text,this.color,this.fontSize}) : super(key: key);
+   CustomeText({Key? key,this.text,this.color,this.fontSize,this.fontWeight}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
