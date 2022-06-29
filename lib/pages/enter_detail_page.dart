@@ -279,4 +279,5 @@ class _EnterDetailPageState extends State<EnterDetailPage> {
       ),
     );
   }
+
 }
